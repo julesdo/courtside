@@ -1,4 +1,4 @@
-import { Trophy, Instagram, Twitter, Youtube, Mail } from 'lucide-react';
+import { Instagram, Twitter, Youtube, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -6,11 +6,8 @@ export default function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-12 text-[11px] font-black text-slate-500 tracking-[0.3em] uppercase">
-          <div className="flex items-center gap-6 group">
-             <div className="w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center text-black performance-glow group-hover:rotate-12 transition-transform">
-                <Trophy size={20} strokeWidth={3} />
-              </div>
-            <p className="text-white text-lg italic tracking-tighter">COURT<span className="text-brand-accent">SIDE</span> MEDIA</p>
+          <div className="flex items-center group">
+            <p className="text-white text-2xl font-black italic tracking-tighter">COURT<span className="text-brand-accent">SIDE</span> MEDIA</p>
           </div>
           <div className="flex flex-wrap justify-center gap-10">
             <a href="#" className="hover:text-brand-accent transition-colors">Mentions Légales</a>

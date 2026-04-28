@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Trophy, Menu, X, Search, Globe } from 'lucide-react';
+import { Menu, X, Search, Globe } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Navbar() {
@@ -10,11 +10,8 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex items-center gap-12">
-            <Link to="/" className="flex items-center gap-4 group">
-              <div className="w-11 h-11 bg-brand-accent rounded-full flex items-center justify-center text-black performance-glow group-hover:scale-110 transition-transform">
-                <Trophy size={22} strokeWidth={2.5} />
-              </div>
-              <span className="text-3xl font-black italic tracking-tighter text-white">
+            <Link to="/" className="flex items-center group">
+              <span className="text-4xl font-black italic tracking-tighter text-white">
                 COURT<span className="text-brand-accent">SIDE</span>
               </span>
             </Link>

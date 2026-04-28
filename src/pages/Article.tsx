@@ -23,6 +23,19 @@ export default function Article() {
       return;
     }
 
+    // Re-inject the script to trigger initialization on route change
+    const scriptId = 'playseed-script-id';
+    const existingScript = document.getElementById(scriptId);
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    const script = document.createElement('script');
+    script.id = scriptId;
+    script.src = "https://www.playseed.io/magic-script.js?clientId=sw_edt0c5otbz2b";
+    script.async = true;
+    document.body.appendChild(script);
+
     const observer = new MutationObserver((mutations) => {
       if (targetNode.querySelector('iframe')) {
         setIsWidgetLoaded(true);
@@ -32,7 +45,9 @@ export default function Article() {
 
     observer.observe(targetNode, { childList: true, subtree: true });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, [id]);
 
   if (!article) {
@@ -142,11 +157,12 @@ export default function Article() {
                   </h3>
                   <span className="text-[10px] font-black text-slate-500 tracking-[0.3em] uppercase">Powered by Playseed</span>
                 </div>
-                <div id="playseed-comments-root" className="article-vote glass-panel rounded-[2.5rem] min-h-[350px] flex items-center justify-center text-slate-500 font-black italic uppercase tracking-widest border border-white/10 performance-glow relative overflow-hidden">
+                <div className="article-vote glass-panel rounded-[2.5rem] min-h-[350px] relative overflow-hidden border border-white/10 performance-glow">
+                   <div id="playseed-comments-root" className="w-full min-h-[350px]"></div>
                    {!isWidgetLoaded && (
                      <div className="flex flex-col items-center gap-4 bg-brand-card/80 backdrop-blur-sm absolute inset-0 z-10 justify-center">
                        <div className="w-12 h-12 border-4 border-brand-accent border-t-transparent rounded-full animate-spin"></div>
-                       <p className="text-slate-400 font-black tracking-widest">INITIALISATION DU COURT...</p>
+                       <p className="text-slate-400 font-black tracking-widest text-[10px]">INITIALISATION DU COURT...</p>
                      </div>
                    )}
                 </div>

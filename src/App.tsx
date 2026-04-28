@@ -3,10 +3,12 @@ import Home from './pages/Home';
 import Article from './pages/Article';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-brand-bg font-sans text-gray-900 selection:bg-brand-accent selection:text-black">
         <Navbar />
         <main>
