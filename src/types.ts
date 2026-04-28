@@ -6,5 +6,5 @@ export interface Article {
   author: string;
   date: string;
   imageUrl: string;
-  category: 'Actualités' | 'Tournois' | 'Classement' | 'Équipement' | 'Analyse';
+  category: 'Actualités' | 'Tournois' | 'Classement' | 'Équipement' | 'Analyse' | 'Lifestyle' | 'Innovation' | 'Environnement' | 'Mental' | 'Société' | 'Portrait';
 }
