@@ -35,7 +35,7 @@ export default function Article() {
 
     const script = document.createElement('script');
     script.id = scriptId;
-    script.src = "https://www.playseed.io/magic-script.js?clientId=sw_edt0c5otbz2b";
+    script.src = "https://www.playseed.io/magic-script.js?clientId=sw_l9hiolulvvxe";
     script.async = true;
     document.body.appendChild(script);
 
