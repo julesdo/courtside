@@ -108,13 +108,18 @@ export default function Article() {
              </article>
 
              {/* Voting & Comments Area (Playseed) */}
-             <div className="mt-20 pt-12 border-t-4 border-slate-100">
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-2xl font-black italic uppercase tracking-tighter">Communauté & Votes</h3>
-                  <span className="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Powered by Playseed</span>
+             <div className="mt-24 pt-16 border-t border-white/5">
+                <div className="flex items-center justify-between mb-10">
+                  <h3 className="text-3xl font-black italic uppercase tracking-tighter text-white">
+                    VOTEZ SUR <span className="text-brand-accent">CE MATCH</span>
+                  </h3>
+                  <span className="text-[10px] font-black text-slate-500 tracking-[0.3em] uppercase">Powered by Playseed</span>
                 </div>
-                <div id="playseed-comments-root" className="bg-slate-50 border-4 border-dashed border-slate-200 rounded-[2rem] min-h-[300px] flex items-center justify-center text-slate-400 font-bold italic">
-                   L'espace dynamique se recharge...
+                <div id="playseed-comments-root" className="article-vote glass-panel rounded-[2.5rem] min-h-[350px] flex items-center justify-center text-slate-500 font-black italic uppercase tracking-widest border border-white/10 performance-glow">
+                   <div className="flex flex-col items-center gap-4">
+                     <div className="w-12 h-12 border-4 border-brand-accent border-t-transparent rounded-full animate-spin"></div>
+                     L'espace interactif se recharge...
+                   </div>
                 </div>
              </div>
           </main>
