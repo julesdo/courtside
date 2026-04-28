@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { articles } from '../data/articles';
 import ReactMarkdown from 'react-markdown';
 import { motion } from 'motion/react';
@@ -6,7 +7,33 @@ import { Share2, ArrowLeft, TrendingUp, Trophy } from 'lucide-react';
 
 export default function Article() {
   const { id } = useParams();
+  const [isWidgetLoaded, setIsWidgetLoaded] = useState(false);
   const article = articles.find(a => a.id === id);
+
+  useEffect(() => {
+    // Reset state on article change
+    setIsWidgetLoaded(false);
+
+    const targetNode = document.getElementById('playseed-comments-root');
+    if (!targetNode) return;
+
+    // Check if it's already there (maybe from a previous navigation)
+    if (targetNode.querySelector('iframe')) {
+      setIsWidgetLoaded(true);
+      return;
+    }
+
+    const observer = new MutationObserver((mutations) => {
+      if (targetNode.querySelector('iframe')) {
+        setIsWidgetLoaded(true);
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(targetNode, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, [id]);
 
   if (!article) {
     return (
@@ -115,11 +142,13 @@ export default function Article() {
                   </h3>
                   <span className="text-[10px] font-black text-slate-500 tracking-[0.3em] uppercase">Powered by Playseed</span>
                 </div>
-                <div id="playseed-comments-root" className="article-vote glass-panel rounded-[2.5rem] min-h-[350px] flex items-center justify-center text-slate-500 font-black italic uppercase tracking-widest border border-white/10 performance-glow">
-                   <div className="flex flex-col items-center gap-4">
-                     <div className="w-12 h-12 border-4 border-brand-accent border-t-transparent rounded-full animate-spin"></div>
-                     L'espace interactif se recharge...
-                   </div>
+                <div id="playseed-comments-root" className="article-vote glass-panel rounded-[2.5rem] min-h-[350px] flex items-center justify-center text-slate-500 font-black italic uppercase tracking-widest border border-white/10 performance-glow relative overflow-hidden">
+                   {!isWidgetLoaded && (
+                     <div className="flex flex-col items-center gap-4 bg-brand-card/80 backdrop-blur-sm absolute inset-0 z-10 justify-center">
+                       <div className="w-12 h-12 border-4 border-brand-accent border-t-transparent rounded-full animate-spin"></div>
+                       <p className="text-slate-400 font-black tracking-widest">INITIALISATION DU COURT...</p>
+                     </div>
+                   )}
                 </div>
              </div>
           </main>
