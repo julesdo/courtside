@@ -2,20 +2,27 @@ import { Trophy, Instagram, Twitter, Youtube, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0A1A2F] py-12 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold text-slate-500 tracking-widest uppercase">
-          <div className="flex items-center gap-4">
-             <div className="w-8 h-8 bg-[#B1FF41] rounded-full flex items-center justify-center text-black">
-                <Trophy size={14} />
+    <footer className="bg-brand-bg py-24 border-t border-white/5 relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-brand-accent/50 to-transparent"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-12 text-[11px] font-black text-slate-500 tracking-[0.3em] uppercase">
+          <div className="flex items-center gap-6 group">
+             <div className="w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center text-black performance-glow group-hover:rotate-12 transition-transform">
+                <Trophy size={20} strokeWidth={3} />
               </div>
-            <p>© 2026 COURTSIDE MEDIA - TOUS DROITS RÉSERVÉS</p>
+            <p className="text-white text-lg italic tracking-tighter">COURT<span className="text-brand-accent">SIDE</span> MEDIA</p>
           </div>
-          <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">Mentions Légales</a>
-            <a href="#" className="hover:text-white transition-colors">Confidentialité</a>
-            <a href="#" className="hover:text-white transition-colors">Contact</a>
+          <div className="flex flex-wrap justify-center gap-10">
+            <a href="#" className="hover:text-brand-accent transition-colors">Mentions Légales</a>
+            <a href="#" className="hover:text-brand-accent transition-colors">Confidentialité</a>
+            <a href="#" className="hover:text-brand-accent transition-colors">Publicité</a>
+            <a href="#" className="hover:text-brand-accent transition-colors">Contact</a>
           </div>
+        </div>
+        <div className="mt-16 text-center">
+          <p className="text-[10px] text-slate-600 font-black tracking-[0.5em] uppercase">
+            © 2026 COURTSIDE MEDIA GROUP - PERFORMANCE & ELEGANCE
+          </p>
         </div>
       </div>
     </footer>

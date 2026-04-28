@@ -56,11 +56,11 @@ export default function Home() {
                 </span>
               </div>
               
-              <h1 className="text-5xl md:text-7xl font-black italic text-white leading-[0.9] tracking-tighter mb-10 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <h1 className="text-4xl md:text-6xl font-black italic text-white leading-[1] tracking-tighter mb-8 drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)] performance-glow-text">
                 {featured.title}
               </h1>
               
-              <p className="text-xl md:text-2xl text-slate-200 mb-12 leading-relaxed max-w-2xl italic font-medium drop-shadow-md">
+              <p className="text-lg md:text-xl text-slate-100 mb-10 leading-relaxed max-w-2xl italic font-bold drop-shadow-md border-l-4 border-brand-accent pl-6 py-2 bg-white/5 rounded-r-2xl">
                 "{featured.description}"
               </p>
               

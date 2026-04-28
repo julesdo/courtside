@@ -10,11 +10,21 @@ export default function Article() {
 
   if (!article) {
     return (
-      <div className="min-h-screen flex items-center justify-center flex-col gap-6">
-        <h1 className="text-4xl font-bold">Article not found</h1>
-        <Link to="/" className="text-indigo-600 font-bold flex items-center gap-2">
-          <ArrowLeft size={20} /> Back to home
-        </Link>
+      <div className="min-h-screen bg-brand-bg flex items-center justify-center flex-col gap-10 p-4">
+        <div className="w-24 h-24 bg-brand-accent rounded-full flex items-center justify-center text-black shadow-[0_0_50px_rgba(177,255,65,0.3)] animate-pulse">
+           <Trophy size={48} strokeWidth={2.5} />
+        </div>
+        <div className="text-center">
+          <h1 className="text-4xl md:text-6xl font-black italic text-white tracking-tighter mb-4">
+            MATCH <span className="text-brand-accent">INTERROMPU</span>
+          </h1>
+          <p className="text-slate-400 font-bold italic text-lg mb-10 tracking-tight">
+            Cet article n'est pas disponible ou a été déplacé.
+          </p>
+          <Link to="/" className="inline-flex items-center gap-4 bg-brand-accent text-black px-10 py-5 rounded-full font-black italic uppercase tracking-widest hover:scale-105 transition-all shadow-[0_20px_40px_rgba(177,255,65,0.2)]">
+            <ArrowLeft size={20} /> RETOUR AU COURT
+          </Link>
+        </div>
       </div>
     );
   }
@@ -51,11 +61,11 @@ export default function Article() {
               </span>
             </div>
             
-            <h1 className="text-5xl md:text-8xl font-black italic text-white leading-[0.9] tracking-tighter mb-10 drop-shadow-2xl">
+            <h1 className="text-4xl md:text-6xl font-black italic text-white leading-[1] tracking-tighter mb-8 drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)] performance-glow-text">
               {article.title}
             </h1>
             
-            <p className="text-xl md:text-2xl font-medium text-slate-300 italic leading-relaxed max-w-3xl mx-auto opacity-80">
+            <p className="text-lg md:text-xl font-bold text-white/90 italic leading-relaxed max-w-3xl mx-auto border-l-4 border-brand-accent pl-6 py-2 bg-white/5 rounded-r-xl">
               "{article.description}"
             </p>
           </motion.div>
