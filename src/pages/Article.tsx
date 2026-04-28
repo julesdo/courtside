@@ -14,21 +14,24 @@ export default function Article() {
     // Reset state on article change
     setIsWidgetLoaded(false);
 
-    const targetNode = document.getElementById('playseed-comments-root');
-    if (!targetNode) return;
+    const container = document.querySelector('.article-vote');
+    
+    const checkStatus = () => {
+      const container = document.querySelector('.article-vote');
+      if (container && (container.querySelector('iframe') || container.querySelector('[data-seed-magic]'))) {
+        setIsWidgetLoaded(true);
+        return true;
+      }
+      return false;
+    };
 
-    // Check if it's already there (maybe from a previous navigation)
-    if (targetNode.querySelector('iframe')) {
-      setIsWidgetLoaded(true);
-      return;
-    }
+    // Check immediately
+    if (checkStatus()) return;
 
     // Re-inject the script to trigger initialization on route change
     const scriptId = 'playseed-script-id';
     const existingScript = document.getElementById(scriptId);
-    if (existingScript) {
-      existingScript.remove();
-    }
+    if (existingScript) existingScript.remove();
 
     const script = document.createElement('script');
     script.id = scriptId;
@@ -36,17 +39,24 @@ export default function Article() {
     script.async = true;
     document.body.appendChild(script);
 
-    const observer = new MutationObserver((mutations) => {
-      if (targetNode.querySelector('iframe')) {
-        setIsWidgetLoaded(true);
+    const observer = new MutationObserver(() => {
+      if (checkStatus()) {
         observer.disconnect();
       }
     });
 
-    observer.observe(targetNode, { childList: true, subtree: true });
+    if (container) {
+      observer.observe(container, { childList: true, subtree: true });
+    }
+
+    // Safety timeout to hide loader if script fails or takes too long
+    const timeout = setTimeout(() => {
+      setIsWidgetLoaded(true);
+    }, 4000);
 
     return () => {
       observer.disconnect();
+      clearTimeout(timeout);
     };
   }, [id]);
 
