@@ -1,15 +1,17 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
   
-  --color-brand-bg: #0F172A;
-  --color-brand-card: #1E293B;
+  --color-brand-bg: #0A0F1E;
+  --color-brand-card: #151C2C;
   --color-brand-accent: #B1FF41;
   --color-brand-indigo: #4F46E5;
+  --color-brand-border: rgba(177, 255, 65, 0.1);
 }
 
 @layer base {
@@ -18,7 +20,31 @@
     color: #f8fafc;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+.performance-glow {
+  box-shadow: 0 0 30px rgba(177, 255, 65, 0.15);
+}
+
+.glass-panel {
+  background: rgba(21, 28, 44, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  color: transparent;
+}
+
+.text-outline-solid {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
 }
 
 .custom-scrollbar::-webkit-scrollbar {

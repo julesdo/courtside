@@ -6,5 +6,5 @@ export interface Article {
   author: string;
   date: string;
   imageUrl: string;
-  category: 'ATP' | 'WTA' | 'Grand Slam' | 'Analysis';
+  category: 'Actualités' | 'Tournois' | 'Classement' | 'Équipement' | 'Analyse';
 }

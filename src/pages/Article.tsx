@@ -22,62 +22,78 @@ export default function Article() {
   return (
     <div className="bg-brand-bg min-h-screen">
       {/* Article Header */}
-      <section className="bg-brand-card pt-12 pb-24 border-b-4 border-brand-accent shadow-2xl">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <Link to="/" className="inline-flex items-center gap-2 text-[10px] font-black text-brand-accent hover:translate-x-[-4px] transition-all uppercase tracking-widest mb-12">
-            <ArrowLeft size={14} /> Retour à l'accueil
-          </Link>
-          
-          <div className="flex gap-2 mb-6 justify-center">
-            <span className="bg-brand-indigo text-white text-[10px] font-bold px-3 py-1 rounded">
-              {article.category}
-            </span>
-            <span className="text-slate-400 text-[10px] font-bold py-1 uppercase tracking-widest">
-              Lecture : 6 min
-            </span>
-          </div>
-          
-          <h1 className="text-5xl md:text-8xl font-black italic text-white leading-[0.85] tracking-tighter mb-8">
-            {article.title}
-          </h1>
-          
-          <p className="text-xl font-medium text-slate-400 italic leading-relaxed max-w-2xl mx-auto">
-            "{article.description}"
-          </p>
+      <section className="relative min-h-[60vh] flex items-center pt-32 pb-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={article.imageUrl} 
+            alt={article.title}
+            className="w-full h-full object-cover blur-[2px] scale-110 opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-bg via-brand-bg/80 to-brand-bg/40" />
+        </div>
+
+        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Link to="/" className="inline-flex items-center gap-3 text-[10px] font-black text-brand-accent hover:gap-4 transition-all uppercase tracking-[0.3em] mb-12 py-2 px-4 rounded-full border border-brand-accent/20 bg-brand-accent/5">
+              <ArrowLeft size={16} /> RETOUR À L'ACCUEIL
+            </Link>
+            
+            <div className="flex gap-4 mb-8 justify-center">
+              <span className="bg-brand-accent text-black text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-[0_0_20px_rgba(177,255,65,0.4)]">
+                {article.category}
+              </span>
+              <span className="text-white/40 text-[10px] font-black py-1.5 uppercase tracking-[0.2em] px-4 border border-white/10 rounded-full">
+                LECTURE • 6 MIN
+              </span>
+            </div>
+            
+            <h1 className="text-5xl md:text-8xl font-black italic text-white leading-[0.9] tracking-tighter mb-10 drop-shadow-2xl">
+              {article.title}
+            </h1>
+            
+            <p className="text-xl md:text-2xl font-medium text-slate-300 italic leading-relaxed max-w-3xl mx-auto opacity-80">
+              "{article.description}"
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* Content wrapper */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 pb-20 relative z-20">
         <div className="flex flex-col lg:flex-row gap-12">
-          {/* Main Content Side (Styled as a large card) */}
-          <main className="lg:col-span-2 flex-[2] bg-white text-slate-900 rounded-[3rem] p-8 md:p-16 shadow-2xl">
-             <div className="flex items-center justify-between gap-4 mb-12 border-b border-slate-100 pb-8">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center font-black text-indigo-600 text-xl border-2 border-white shadow-lg">
+          {/* Main Content Side */}
+          <main className="lg:col-span-2 flex-[2] bg-brand-card text-slate-200 rounded-[3rem] p-8 md:p-20 shadow-[0_40px_100px_rgba(0,0,0,0.6)] border border-white/5">
+             <div className="flex flex-wrap items-center justify-between gap-8 mb-16 border-b border-white/5 pb-12">
+                <div className="flex items-center gap-6">
+                  <div className="w-16 h-16 bg-brand-accent rounded-full flex items-center justify-center font-black text-black text-2xl border-4 border-brand-bg shadow-xl performance-glow">
                     {article.author[0]}
                   </div>
                   <div>
-                    <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-0.5">Auteur</p>
-                    <p className="text-lg font-black italic text-slate-900">{article.author}</p>
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-accent mb-1">Rédacteur Expert</p>
+                    <p className="text-2xl font-black italic text-white tracking-tight">{article.author}</p>
                   </div>
                 </div>
-                <div className="flex gap-2">
-                   <button className="p-3 bg-slate-50 rounded-2xl hover:bg-brand-indigo hover:text-white transition-all text-slate-400">
-                     <Share2 size={20} />
+                <div className="flex gap-4">
+                   <button className="flex items-center gap-3 px-6 py-3 bg-white/5 rounded-full hover:bg-brand-accent hover:text-black transition-all text-white/70 font-black text-[10px] uppercase tracking-widest border border-white/10 group">
+                     PARTAGER
+                     <Share2 size={18} className="group-hover:rotate-12 transition-transform" />
                    </button>
                 </div>
              </div>
 
-             <div className="rounded-[2.5rem] overflow-hidden mb-16 shadow-2xl border-4 border-white">
+             <div className="rounded-[3rem] overflow-hidden mb-20 shadow-[0_30px_60px_rgba(0,0,0,0.4)] border border-white/10 group">
                 <img 
                   src={article.imageUrl} 
                   alt={article.title}
-                  className="w-full object-cover"
+                  className="w-full object-cover group-hover:scale-105 transition-transform duration-[5s]"
                 />
-             </div>
+              </div>
 
-             <article className="prose prose-slate prose-xl max-w-none prose-headings:font-black prose-headings:italic prose-headings:tracking-tighter prose-headings:text-slate-900 prose-p:text-slate-600 prose-p:font-medium prose-p:leading-relaxed prose-blockquote:border-l-8 prose-blockquote:border-brand-accent prose-blockquote:bg-slate-50 prose-blockquote:py-8 prose-blockquote:px-10 prose-blockquote:rounded-r-2xl prose-blockquote:italic prose-img:rounded-[2rem]">
+             <article className="prose prose-invert prose-xl max-w-none prose-headings:font-black prose-headings:italic prose-headings:tracking-tighter prose-headings:text-white prose-p:text-slate-300 prose-p:font-medium prose-p:leading-relaxed prose-blockquote:border-l-[12px] prose-blockquote:border-brand-accent prose-blockquote:bg-white/5 prose-blockquote:py-10 prose-blockquote:px-12 prose-blockquote:rounded-[2rem] prose-blockquote:italic prose-blockquote:text-white prose-strong:text-brand-accent prose-img:rounded-[3rem] prose-img:border prose-img:border-white/10">
                <ReactMarkdown>{article.content}</ReactMarkdown>
              </article>
 
@@ -95,29 +111,34 @@ export default function Article() {
 
           {/* Sidebar Area */}
           <aside className="flex-1 flex flex-col gap-8">
-             <div className="bg-brand-indigo rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden group">
-                <h3 className="text-2xl font-black italic mb-8 relative z-10 flex items-center gap-3">
-                  <TrendingUp size={24} className="text-brand-accent" />
-                  Top Stories
+             <div className="bg-brand-card rounded-[2.5rem] p-8 text-white shadow-2xl border border-white/5 relative overflow-hidden group">
+                <h3 className="text-2xl font-black italic mb-10 relative z-10 flex items-center gap-3 tracking-tighter">
+                  <TrendingUp size={24} className="text-brand-accent animate-pulse" />
+                  À LIRE AUSSI
                 </h3>
-                <div className="space-y-6 relative z-10">
-                   {articles.filter(a => a.id !== id).map(a => (
+                <div className="space-y-10 relative z-10">
+                   {articles.filter(a => a.id !== id).slice(0, 3).map(a => (
                      <Link to={`/article/${a.id}`} key={a.id} className="block group/item">
-                        <p className="text-[10px] font-black uppercase tracking-widest text-[#B1FF41] mb-1">{a.category}</p>
-                        <h4 className="font-black text-sm group-hover/item:underline underline-offset-4 leading-tight">{a.title}</h4>
+                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-accent mb-2">{a.category}</p>
+                        <h4 className="font-black text-lg italic group-hover/item:text-brand-accent transition-colors leading-tight tracking-tight">{a.title}</h4>
                      </Link>
                    ))}
                 </div>
-                <Trophy size={140} className="absolute -bottom-10 -right-10 text-white opacity-10 rotate-12 group-hover:rotate-0 transition-transform duration-700" />
+                <div className="absolute -bottom-10 -right-10 opacity-[0.03] rotate-12 pointer-events-none group-hover:scale-110 transition-transform duration-1000">
+                  <Trophy size={140} />
+                </div>
              </div>
 
-             <div className="bg-brand-accent rounded-[2.5rem] p-8 text-black shadow-2xl">
-                <p className="text-[10px] font-black uppercase tracking-widest mb-2">Prochain Direct</p>
-                <h4 className="text-3xl font-black italic tracking-tighter leading-none mb-2">ALCARAZ vs SINNER</h4>
-                <p className="font-bold text-sm mb-6">Demi-Finale • Aujourd'hui 18:00</p>
-                <button className="w-full py-4 bg-black text-white rounded-2xl font-black italic uppercase tracking-widest hover:scale-105 transition-transform">
-                   Alerte Match
-                </button>
+             <div className="bg-brand-accent rounded-[2.5rem] p-10 text-black shadow-2xl relative overflow-hidden group">
+                <div className="relative z-10">
+                  <p className="text-[10px] font-black uppercase tracking-[0.3em] mb-4 opacity-70">Prochain Direct</p>
+                  <h4 className="text-3xl font-black italic tracking-tighter leading-none mb-2">NADAL vs ALCARAZ</h4>
+                  <p className="font-black text-xs uppercase tracking-widest mb-10 opacity-60">MASTERS MADRID • DEMAIN 16:00</p>
+                  <button className="w-full py-4 bg-black text-white rounded-2xl font-black italic uppercase tracking-widest hover:bg-slate-900 transition-colors shadow-xl">
+                    ALERTE MATCH
+                  </button>
+                </div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-8 -mt-8"></div>
              </div>
           </aside>
         </div>
